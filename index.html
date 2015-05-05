@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]><html class="ie6 ie6-8 ie6-7" lang="en"><![endif]-->
+<!--[if IE 7]><html class=" ie7 ie6-8 ie6-7" lang="en"><![endif]-->
+<!--[if IE 8]><html class=" ie8 ie6-8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" ><!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>App</title>
+	<link href="css/css.css" rel="stylesheet" />
+</head>
+<body ng-app="app">
+	<div ng-controller="main">
+		<table>
+			<tr>
+				<th></th>
+				<th>Id</th>
+				<th>name</th>
+				<th>surname</th>
+				<th>date of birth</th>
+				<th>mobile (dashes and spaces allowed)</th>
+				<th>address (city, street + number)</th>
+				<th><button ng-click="editAll()">edit checked</button></th>
+			</tr>
+			<tr ng-repeat="user in users">
+				<td><input type="checkbox" ng-model="user.checked" ng-change="check()"/></td>
+				<td>{{user.id}}</td>
+				<td><input ng-model="user.name" ng-minlength="2" required/></td>
+				<td><input ng-model="user.surname" ng-minlength="3" required /></td>
+				<td><input type="text" ng-model="user.birthDate" date/></td>
+				<td><input ng-model="user.mobile" type="text" phone/></td>
+				<td><input ng-model="user.address" address /></td>
+				<td><button ng-click="edit(user)">edit</button><button ng-click="delete(user)">delete</button></td>
+			</tr>
+		</table>
+		<button ng-click="refresh()">refresh - gets up-to-date data from mock database</button>
+	</div>
+
+ 	 <!-- vendors -->
+	<script type="text/javascript" src="vendors/angular.js"></script>
+	<script type="text/javascript" src="vendors/angular-mock.js"></script>
+ 	 <!-- mock backend... -->
+	<script type="text/javascript" src="js/mockBackend/mockBackend.js"></script>
+	<script type="text/javascript" src="js/mockBackend/model.js"></script>
+  	<!-- modules init -->
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/common/modules-init.js"></script>
+  	<!-- servicese-->
+	<script type="text/javascript" src="js/common/services/users.service.js"></script>
+  	<!-- directives -->
+	<script type="text/javascript" src="js/common/directives/phone.directive.js"></script>
+	<script type="text/javascript" src="js/common/directives/date.directive.js"></script>
+	<script type="text/javascript" src="js/common/directives/address.directive.js"></script>
+  	<!-- controllers -->
+	<script type="text/javascript" src="js/app/main/main.controller.js"></script>
+</body>
+</html>
+
